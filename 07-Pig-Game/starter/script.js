@@ -70,6 +70,9 @@ function handleHoldButtonClick(e) {
     document.querySelector('.btn--roll').removeEventListener('click', handleRolldiceButtonClick);
     diceEl.classList.add('hidden');
   } else {
+    currentScore = 0;
+    currentScore0El.innerHTML = 0;
+    currentScore1El.innerHTML = 0;
     document.querySelector(`.player--${activePlayer}`).classList.toggle('player--active');
     activePlayer = activePlayer === 0 ? 1 : 0;
     document.querySelector(`.player--${activePlayer}`).classList.toggle('player--active');
