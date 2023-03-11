@@ -33,8 +33,7 @@ score1El.innerHTML = 0;
 diceEl.classList.add('hidden'); // hidden xuc xac
 
 // 
-
-document.querySelector('.btn--roll').addEventListener('click', function () {
+function handleRolldiceButtonClick(e) {
   //random 1 con so
   var randomNumber = Math.floor(Math.random() * 6) + 1;
   diceEl.setAttribute('src', `dice-${randomNumber}.png`);
@@ -52,7 +51,8 @@ document.querySelector('.btn--roll').addEventListener('click', function () {
     activePlayer = activePlayer === 0 ? 1 : 0;
 
   }
-});
+};
+document.querySelector('.btn--roll').addEventListener('click', handleRolldiceButtonClick);
 
 //hold btn
 function handleHoldButtonClick(e) {
@@ -67,6 +67,8 @@ function handleHoldButtonClick(e) {
     document.getElementById(`name--${activePlayer}`).classList.add('.name');
     //vo hieu hoa nut hold va roll va an xuc xac
     document.querySelector('.btn--hold').removeEventListener('click', handleHoldButtonClick);
+    document.querySelector('.btn--roll').removeEventListener('click', handleRolldiceButtonClick);
+    diceEl.classList.add('hidden');
   } else {
     activePlayer = activePlayer === 0 ? 1 : 0;
   }
@@ -76,3 +78,27 @@ function handleHoldButtonClick(e) {
 document.querySelector('.btn--hold').addEventListener('click', handleHoldButtonClick);
 //
 //click new game
+function startNewGame() {
+  currentScore = 0;
+  score = [0, 0];
+  activePlayer = 0;
+  score0El.innerHTML = 0;
+  score1El.innerHTML = 0;
+  diceEl.classList.add('hidden');
+  document.querySelector(`.player--${activePlayer}`).classList.add('player--active');
+  document.querySelector(`.player--${activePlayer}`).classList.remove('player--winner');
+  // condition start the game
+  //current score = 0
+  //score = 0
+  //xuc xac bien mat
+  //activeplay = 0
+  //hien thi mau nen dung
+  score0El.innerHTML = 0;
+  score1El.innerHTML = 0;
+  currentScore0El.innerHTML = 0;
+  currentScore1El.innerHTML = 0;
+  diceEl.classList.add('hidden'); // hidden xuc xac
+  document.querySelector('.btn--roll').addEventListener('click', handleRolldiceButtonClick);
+  document.querySelector('.btn--hold').addEventListener('click', handleHoldButtonClick);
+};
+document.querySelector('.btn--new').addEventListener('click', startNewGame);
