@@ -70,7 +70,9 @@ function handleHoldButtonClick(e) {
     document.querySelector('.btn--roll').removeEventListener('click', handleRolldiceButtonClick);
     diceEl.classList.add('hidden');
   } else {
+    document.querySelector(`.player--${activePlayer}`).classList.toggle('player--active');
     activePlayer = activePlayer === 0 ? 1 : 0;
+    document.querySelector(`.player--${activePlayer}`).classList.toggle('player--active');
   }
   // neu nho hon 100 diem thi scurrent = 0, doi nguoi choi
 };
@@ -85,8 +87,10 @@ function startNewGame() {
   score0El.innerHTML = 0;
   score1El.innerHTML = 0;
   diceEl.classList.add('hidden');
-  document.querySelector(`.player--${activePlayer}`).classList.add('player--active');
-  document.querySelector(`.player--${activePlayer}`).classList.remove('player--winner');
+  document.querySelector('.player--0').classList.add('player--active');
+  document.querySelector('.player--0').classList.remove('player--winner');
+  document.querySelector('.player--1').classList.remove('player--active');
+  document.querySelector('.player--1').classList.remove('player--winner');
   // condition start the game
   //current score = 0
   //score = 0
