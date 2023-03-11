@@ -32,7 +32,7 @@ score0El.innerHTML = 0;
 score1El.innerHTML = 0;
 diceEl.classList.add('hidden'); // hidden xuc xac
 
-// 
+// ROLLDICE BTN
 function handleRolldiceButtonClick(e) {
   //random 1 con so
   var randomNumber = Math.floor(Math.random() * 6) + 1;
@@ -47,14 +47,15 @@ function handleRolldiceButtonClick(e) {
     //currentScore cua nguoi dang choi  = 0
     currentScore = 0;
     document.querySelector(`#current--${activePlayer}`).innerHTML = 0;
-    // doi nguoi choi
+    // doi nguoi choi , DOI GIAO DIEN
+    document.querySelector(`.player--${activePlayer}`).classList.toggle('player--active');
     activePlayer = activePlayer === 0 ? 1 : 0;
-
+    document.querySelector(`.player--${activePlayer}`).classList.toggle('player--active');
   }
 };
 document.querySelector('.btn--roll').addEventListener('click', handleRolldiceButtonClick);
 
-//hold btn
+//HOLD BTN
 function handleHoldButtonClick(e) {
   //luu diem current vao diem Score
   document.getElementById(`score--${activePlayer}`).innerHTML = score[activePlayer] + currentScore;
